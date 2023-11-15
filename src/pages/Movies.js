@@ -1,6 +1,6 @@
 import "../index.css";
 import Movie from "../components/Movie";
-import TeamLogo from "../img/group_logo.png";
+
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import EditMovie from "../components/EditMovie";
@@ -61,8 +61,7 @@ function Movies() {
 
   return (
     <div>
-        <h1 className="place-content-center">Movie Database</h1>
-        <img src={TeamLogo} alt="TeamLogo" width="200" />
+        
 
         <div className="flex flex-wrap justify-center">
           {movies.map((movie) => {              
