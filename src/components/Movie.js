@@ -13,7 +13,6 @@ function Movie(props) {
           <p className="text-lg text-black font-semibold">{props.name}</p>
           <p className="text-slate-500 font-medium">{props.year}</p>
         </div>
-
         <EditMovie/>
       </div>
     </div>

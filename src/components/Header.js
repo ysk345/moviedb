@@ -7,8 +7,9 @@ import { NavLink } from "react-router-dom";
 //put all page here
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Movies", href: "/Movies" },
-  { name: "Discussion", href: "/Discussion" },
+  { name: "Movies", href: "/movielist" },
+  { name: "Discussion", href: "/discussion" },
+  { name: "Add", href: "/add" }
 ];
 
 function classNames(...classes) {
