@@ -20,8 +20,6 @@ app.use(
   })
 );
 
-
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
@@ -385,9 +383,6 @@ app.post('/api/users/register', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-
-
 
 app.listen(8081, () => {
   console.log("Server is running on 8081....");

@@ -104,7 +104,7 @@ export default class AddMovie extends Component {
               <input
                 type="text"
                 class="form-control col-lg-4"
-                value={this.state.name}
+                value={this.state.title}
                 onChange={this.onChangeTitle}
               />
             </div>
