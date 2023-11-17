@@ -7,7 +7,7 @@ function EditMovie() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  console.log("hii");
   return (
     <>
       <button
