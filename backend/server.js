@@ -151,6 +151,7 @@ connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
+//get all movies
 app.get('/api/movies', (req, res) => {
   Movie.find()
     .then(movies => {
@@ -164,7 +165,21 @@ app.get('/api/movies', (req, res) => {
 app.get('/', (req, res) => {
     res.json({ message: "Welcome to Movies Database" });
   });
-  
+
+  //fetch a single movie
+app.get('/api/movies/:movieId', (req, res) => {
+  const movieId = req.params.movieId;
+  Movie.findById(movieId)
+    .then(movie => {
+      if (!movie) {
+        return res.status(404).json({ error: 'Movie not found' });
+      }
+      res.json(movie);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
 
 app.put('/api/movies/:movieId', (req, res) => {
   const movieId = req.params.movieId;
@@ -199,19 +214,7 @@ app.get('/api/movies/search', (req, res) => {
     });
 });
 
-app.get('/api/movies/:movieId', (req, res) => {
-  const movieId = req.params.movieId;
-  Movie.findById(movieId)
-    .then(movie => {
-      if (!movie) {
-        return res.status(404).json({ error: 'Movie not found' });
-      }
-      res.json(movie);
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-});
+
 
 app.delete('/api/movies/:movieId', (req, res) => {
   const movieId = req.params.movieId;
