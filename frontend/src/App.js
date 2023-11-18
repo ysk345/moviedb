@@ -7,7 +7,7 @@ import MovieList from "./pages/MovieList";
 import Discussions from "./pages/Discussions";
 import MovieDetails from "./pages/MovieDetails";
 import AddMovie from "./components/AddMovie";
-import './index.css';
+import EditMovie from "./components/EditMovie";
 
 //Frontend Routing
 function App() {
@@ -20,6 +20,7 @@ function App() {
           <Route path="/movielist" element={<MovieList />} />
           <Route path="/discussion" element={<Discussions />} />
           <Route path="/add" element={<AddMovie />} />
+          <Route path="/edit/:id" element={<EditMovie />} />
         </Routes>
       </Header>
     </BrowserRouter>
