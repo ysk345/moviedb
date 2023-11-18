@@ -1,34 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import Movie from "../components/Movie"; // Update this path if necessary
 import DeleteModal from "../components/DeleteModal";
-const Movie = (props) => {
-  return (
-    <tr>
-      <td>{props.movie.title}</td>
-      <td>{props.movie.description}</td>
-      <td>
-        <img
-          src={props.movie.imgURL}
-          alt={props.movie.title}
-          style={{ maxWidth: "100px" }}
-        />
-      </td>
-      <td>{props.movie.year}</td>
-      <td>{props.movie.genre}</td>
-      <td>{props.movie.director}</td>
-      <td>
-        <Link to={"/edit/" + props.movie._id}>Edit</Link>
-        <button
-          className="bg-transparent text-red-500 border-none w-9 h-9 text-sm flex items-center justify-center hover:bg-red-100 focus:outline-none"
-          onClick={() => props.openDeleteModal()}
-        >
-          Delete
-        </button>
-      </td>
-    </tr>
-  );
-};
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
