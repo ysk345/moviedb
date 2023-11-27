@@ -16,10 +16,28 @@ const session = require("express-session");
 const jwt = require("jwt-simple");
 const accountController = require("./controllers/accountContraller.js");
 const ExtractJwt = passportJWT.ExtractJwt;
-const Strategy = passportJWT.Strategy;
+const JwtStrategy = passportJWT.Strategy;
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: config.jwtSecret,
+};
 app.use(bodyParser.urlencoded({ extended: false }));
 
 passport.use(new LocalStrategy(User.authenticate()));
+passport.use(
+  new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
+    try {
+      const user = await User.findById(jwt_payload.id).exec();
+      if (user) {
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    } catch (error) {
+      return done(error, false);
+    }
+  })
+);
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
@@ -315,7 +333,7 @@ app.post("/login", accountController.login);
 app.post("/register", accountController.register);
 
 module.exports = function () {
-  var strategy = new Strategy(params, function (payload, done) {
+  var strategy = new JwtStrategy(params, function (payload, done) {
     User.findById(payload.id, function (err, user) {
       if (err) {
         return done(new Error("UserNotFound"), null);
