@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Movie from "../components/Movie"; // Update this path if necessary
 import DeleteModal from "../components/DeleteModal";
-
+import { useAuth } from "../contexts/AuthContext";
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
-
+  const { isAuthenticated } = useAuth();
   const fetchData = () => {
     axios
       .get("http://localhost:8081/api/movies")
@@ -48,6 +48,7 @@ const MovieList = () => {
       <Movie
         movie={movie}
         key={i}
+        isAuthenticated={isAuthenticated}
         openDeleteModal={() => openDeleteModal(movie)}
       />
     ));

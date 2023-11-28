@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Movie = ({ movie, openDeleteModal }) => {
+const Movie = ({ movie, openDeleteModal, isAuthenticated }) => {
   const navigate = useNavigate();
 
   const navigateToMovieDetail = () => {
@@ -17,7 +17,7 @@ const Movie = ({ movie, openDeleteModal }) => {
   };
   return (
     <tr
-      className="cursor-pointer hover:shadow-lg transition-transform duration-200"
+      className="transition-transform duration-200 cursor-pointer hover:shadow-lg"
       onClick={navigateToMovieDetail}
     >
       <td>{movie.title}</td>
@@ -32,20 +32,22 @@ const Movie = ({ movie, openDeleteModal }) => {
       <td>{movie.year}</td>
       <td>{movie.genre}</td>
       <td>{movie.director}</td>
-      <td>
-        <button
-          className="bg-transparent text-blue-500 border-none w-9 h-9 text-sm flex items-center justify-center"
-          onClick={handleEditClick}
-        >
-          Edit
-        </button>
-        <button
-          className="bg-transparent text-red-500 border-none w-9 h-9 text-sm flex items-center justify-center hover:bg-red-100 focus:outline-none"
-          onClick={handleDeleteClick}
-        >
-          Delete
-        </button>
-      </td>
+      {isAuthenticated && (
+        <td>
+          <button
+            className="flex items-center justify-center text-sm text-blue-500 bg-transparent border-none w-9 h-9"
+            onClick={handleEditClick}
+          >
+            Edit
+          </button>
+          <button
+            className="flex items-center justify-center text-sm text-red-500 bg-transparent border-none w-9 h-9 hover:bg-red-100 focus:outline-none"
+            onClick={handleDeleteClick}
+          >
+            Delete
+          </button>
+        </td>
+      )}
     </tr>
   );
 };

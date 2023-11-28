@@ -142,21 +142,25 @@ app.get("/api/movies/:movieId", (req, res) => {
     });
 });
 
-app.put("/api/movies/:movieId", (req, res) => {
-  const movieId = req.params.movieId;
-  const updatedData = req.body;
+app.put(
+  "/api/movies/:movieId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const movieId = req.params.movieId;
+    const updatedData = req.body;
 
-  Movie.findByIdAndUpdate(movieId, updatedData, { new: true })
-    .then((updatedMovie) => {
-      if (!updatedMovie) {
-        return res.status(404).json({ error: "Movie not found" });
-      }
-      res.json(updatedMovie);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
+    Movie.findByIdAndUpdate(movieId, updatedData, { new: true })
+      .then((updatedMovie) => {
+        if (!updatedMovie) {
+          return res.status(404).json({ error: "Movie not found" });
+        }
+        res.json(updatedMovie);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  }
+);
 
 // Find movies by name
 app.get("/api/movies/search", (req, res) => {
@@ -175,30 +179,38 @@ app.get("/api/movies/search", (req, res) => {
     });
 });
 
-app.delete("/api/movies/:movieId", (req, res) => {
-  const movieId = req.params.movieId;
-  Movie.findByIdAndRemove(movieId)
-    .then((deletedMovie) => {
-      if (!deletedMovie) {
-        return res.status(404).json({ error: "Movie not found" });
-      }
-      res.json(deletedMovie);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
+app.delete(
+  "/api/movies/:movieId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const movieId = req.params.movieId;
+    Movie.findByIdAndRemove(movieId)
+      .then((deletedMovie) => {
+        if (!deletedMovie) {
+          return res.status(404).json({ error: "Movie not found" });
+        }
+        res.json(deletedMovie);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  }
+);
 
 // Delete all movies
-app.delete("/api/movies", (req, res) => {
-  Movie.deleteMany({})
-    .then(() => {
-      res.json({ message: "All movies deleted" });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
+app.delete(
+  "/api/movies",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movie.deleteMany({})
+      .then(() => {
+        res.json({ message: "All movies deleted" });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  }
+);
 
 app.get("/api/genres", (req, res) => {
   Genre.find()
