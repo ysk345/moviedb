@@ -9,6 +9,8 @@ import MovieDetails from "./pages/MovieDetails";
 import AddMovie from "./components/AddMovie";
 import EditMovie from "./components/EditMovie";
 
+import Register from "./components/Register";
+
 //Frontend Routing
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
       <Header>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/movielist" element={<MovieList />} />
           <Route path="/discussion" element={<Discussions />} />
