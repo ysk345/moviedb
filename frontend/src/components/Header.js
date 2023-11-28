@@ -27,11 +27,7 @@ export default function Header(props) {
       });
       // If the login is successful, the backend should return a JWT token
       const token = response.data.token;
-
-      // Store the token in localStorage or a safer place like an httpOnly cookie
-      localStorage.setItem("token", token);
-
-      login();
+      login(token);
       // Close the login form modal
       setIsLoginFormOpen(false);
 
@@ -67,7 +63,6 @@ export default function Header(props) {
     }
   };
   const handleLogout = () => {
-    localStorage.removeItem("token");
     logout();
   };
   return (

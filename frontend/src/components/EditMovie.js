@@ -12,17 +12,17 @@ const EditMovie = () => {
     director: "",
   });
 
-const params = useParams();
+  const params = useParams();
 
-useEffect(() => {
-  fetch("http://localhost:8081/api/movies/"+ params.id)
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {      
-      setFormData(data)
-    })
-}, [params.id]);
+  useEffect(() => {
+    fetch("http://localhost:8081/api/movies/" + params.id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFormData(data);
+      });
+  }, [params.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,10 +34,16 @@ useEffect(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     axios
-    .put(`http://localhost:8081/api/movies/${params.id}`, formData) // Use movieId for the PUT request
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+      .put(`http://localhost:8081/api/movies/${params.id}`, formData, config) // Use movieId for the PUT request
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
     setFormData({
       title: "",
@@ -52,7 +58,7 @@ useEffect(() => {
   return (
     <div className="container">
       <div className="col-lg-6">
-        <form onSubmit={handleSubmit}>        
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Title:</label>
             <input
@@ -103,7 +109,7 @@ useEffect(() => {
               onChange={handleChange}
             />
           </div>
-          
+
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

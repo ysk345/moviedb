@@ -33,9 +33,18 @@ const MovieList = () => {
     setSelectedMovie(null);
   };
   const deleteMovie = (movieId) => {
+    const token = localStorage.getItem("token");
+
+    // Configure headers with the retrieved token
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log("Request config:", config);
     // Implement the delete functionality here
     axios
-      .delete(`http://localhost:8081/api/movies/${movieId}`)
+      .delete(`http://localhost:8081/api/movies/${movieId}`, config)
       .then(() => {
         closeDeleteModal();
         fetchData(); // Refresh the list after deletion
