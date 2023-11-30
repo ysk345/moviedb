@@ -1,13 +1,14 @@
 // Nav bar component based on tailwind CSS
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import AuthForm from "./AuthForm";
 import axios from "axios";
 import { LOGIN_API, REGISTER_API } from "../constants";
 import { useAuth } from "../contexts/AuthContext";
-//put all page here
+
+//routes for nav bar
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Movies", href: "/movielist" },
@@ -107,14 +108,7 @@ export default function Header(props) {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button
-                    type="button"
-                    className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="w-6 h-6" aria-hidden="true" />
-                  </button>
+                  
                   {!isAuthenticated ? (
                     <button
                       onClick={() => setIsLoginFormOpen(true)}
