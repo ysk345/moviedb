@@ -3,6 +3,9 @@ import axios from "axios";
 import Movie from "../components/Movie"; // Update this path if necessary
 import DeleteModal from "../components/DeleteModal";
 import { useAuth } from "../contexts/AuthContext";
+import {Link} from 'react-router-dom';
+import TeamLogo from "../img/group_logo.png";
+
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,8 +65,21 @@ const MovieList = () => {
       />
     ));
   };
+
   return (
     <>
+
+    <h1 className="text-center">Movie Database</h1>
+
+    {/* Button to add movie */}
+      <div style={{textAlign: "center", margin: "auto"}}>
+        <Link to="/add" >
+        <button type="button" className="btn btn-primary">Add A Movie</button>
+        </Link>
+      </div>
+      <br/>
+
+    {/* Table displaying all movies */}      
       <table className="table">
         <thead>
           <tr>
@@ -77,6 +93,13 @@ const MovieList = () => {
         </thead>
         <tbody>{renderMovieList()}</tbody>
       </table>
+
+      <footer className="text-center mx-auto">
+        <p>Developed By:</p>
+        <img src={TeamLogo} alt="TeamLogo" width="300" className="mx-auto" />
+      </footer>
+      
+      
       {isModalOpen && selectedMovie !== null && (
         <DeleteModal
           movie={selectedMovie}
@@ -84,8 +107,10 @@ const MovieList = () => {
           onDelete={() => deleteMovie(selectedMovie._id)}
         />
       )}
+
     </>
   );
+
 };
 
 export default MovieList;

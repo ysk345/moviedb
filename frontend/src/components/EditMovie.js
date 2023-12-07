@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 const EditMovie = () => {
@@ -110,9 +110,13 @@ const EditMovie = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary mt-2">
             Submit
           </button>
+
+          <Link to="/movielist">
+            <button class="btn btn-secondary ms-2 mt-2">Back</button>
+          </Link>
         </form>
       </div>
     </div>

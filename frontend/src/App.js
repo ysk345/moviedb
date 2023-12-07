@@ -2,21 +2,20 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import components and pages
 import Header from "./components/Header";
-import Home from "./pages/Home";
 import MovieList from "./pages/MovieList";
 import Discussions from "./pages/Discussions";
 import MovieDetails from "./pages/MovieDetails";
 import AddMovie from "./components/AddMovie";
 import EditMovie from "./components/EditMovie";
 import { AuthProvider } from "./contexts/AuthContext";
+
 //Frontend Routing
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Header>
-          <Routes>
-            <Route path="/" element={<Home />} />
+          <Routes>            
             <Route path="/movie/:id" element={<MovieDetails />} />
             <Route path="/movielist" element={<MovieList />} />
             <Route path="/discussion" element={<Discussions />} />

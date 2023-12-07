@@ -10,10 +10,10 @@ import { useAuth } from "../contexts/AuthContext";
 
 //routes for nav bar
 const navigation = [
-  { name: "Home", href: "/" },
+  //{ name: "Home", href: "/" },
   { name: "Movies", href: "/movielist" },
   { name: "Discussion", href: "/discussion" },
-  { name: "Add", href: "/add" },
+  //{ name: "Add", href: "/add" },
 ];
 
 export default function Header(props) {
