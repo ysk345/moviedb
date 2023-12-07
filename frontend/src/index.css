@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    font-family: Lexend;
+}
+
+footer{
+    background-color: #363e4a;
+}
+
+#footerText{
+    font-family: Lexend;
+    color:aliceblue;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1em;
+   }
+   
+.grid-item {
+    border: 1px solid #ccc;
+    padding: 1em;
+    text-align: center;
+   }
+
+#movieTitle{
+    font-family: Lexend;
+    font-size: 20px;
+}

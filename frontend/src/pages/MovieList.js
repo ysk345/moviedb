@@ -3,8 +3,7 @@ import axios from "axios";
 import Movie from "../components/Movie"; // Update this path if necessary
 import DeleteModal from "../components/DeleteModal";
 import { useAuth } from "../contexts/AuthContext";
-import {Link} from 'react-router-dom';
-import TeamLogo from "../img/group_logo.png";
+import { Link } from 'react-router-dom';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -27,14 +26,17 @@ const MovieList = () => {
   useEffect(() => {
     fetchData();
   }, []); // Empty dependency array to mimic componentDidMount
+
   const openDeleteModal = (movie) => {
     setSelectedMovie(movie);
     setIsModalOpen(true);
   };
+
   const closeDeleteModal = () => {
     setIsModalOpen(false);
     setSelectedMovie(null);
   };
+
   const deleteMovie = (movieId) => {
     const token = localStorage.getItem("token");
 
@@ -55,51 +57,37 @@ const MovieList = () => {
       .catch((err) => console.error("Error deleting movie:", err));
   };
 
-  const renderMovieList = () => {
-    return movies.map((movie, i) => (
-      <Movie
-        movie={movie}
-        key={i}
-        isAuthenticated={isAuthenticated}
-        openDeleteModal={() => openDeleteModal(movie)}
-      />
-    ));
-  };
+const renderMovieList = () => {
+  return (
+    <div className="grid">
+      {movies.map((movie, i) => (
+        <Movie
+          movie={movie}
+          key={i}
+          isAuthenticated={isAuthenticated}
+          openDeleteModal={() => openDeleteModal(movie)}
+        />
+      ))}
+    </div>
+  );
+};
 
   return (
     <>
-
     <h1 className="text-center">Movie Database</h1>
-
-    {/* Button to add movie */}
+      {/* Button to add movie */}
       <div style={{textAlign: "center", margin: "auto"}}>
-        <Link to="/add" >
-        <button type="button" className="btn btn-primary">Add A Movie</button>
+        <Link to="/add">
+        <button type="button" className="btn btn-primary btn-lg">Add A Movie</button>
         </Link>
       </div>
       <br/>
 
-    {/* Table displaying all movies */}      
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Img</th>
-            <th scope="col">Year</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Director</th>
-          </tr>
-        </thead>
-        <tbody>{renderMovieList()}</tbody>
-      </table>
-
-      <footer className="text-center mx-auto">
-        <p>Developed By:</p>
-        <img src={TeamLogo} alt="TeamLogo" width="300" className="mx-auto" />
-      </footer>
+      <section>
+      {renderMovieList()}
+      </section>
       
-      
+      {/* Delete modal */}
       {isModalOpen && selectedMovie !== null && (
         <DeleteModal
           movie={selectedMovie}
