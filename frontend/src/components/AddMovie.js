@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {Link} from 'react-router-dom'; 
 
 export default class AddMovie extends Component {
   constructor(props) {
@@ -164,6 +165,11 @@ export default class AddMovie extends Component {
             <button type="submit" class="btn btn-primary">
               Submit
             </button>
+
+            <Link to="/movielist">
+            <button class="btn btn-secondary ms-2">Back</button>
+            </Link>
+
           </form>
         </div>
       </div>
