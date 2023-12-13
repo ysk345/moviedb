@@ -86,8 +86,9 @@ export default function Header(props) {
                   </Disclosure.Button>
                 </div>
                 <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                  <div className="hidden sm:ml-6 sm:block">
+                  <div className="hidden sm:ml-6 sm:block">                  
                     <div className="flex space-x-4">
+                      <p className="text-white">Talk About Reel</p>
                       {navigation.map((item) => (
                         <NavLink
                           key={item.name}

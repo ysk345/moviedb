@@ -12,10 +12,6 @@ const movieSchema = new Schema({
     required: true,
   },
 
-  //movie posters (imgURL) will be uploaded to Google Photos and embedded with:
-  // https://www.labnol.org/embed/google/photos/
-  //Generate the link before creating the movie object
-
   imgURL: {
     type: String,
     required: true,

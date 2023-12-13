@@ -74,11 +74,11 @@ const renderMovieList = () => {
 
   return (
     <>
-    <h1 className="text-center">Movie Database</h1>
+    <h1 className="text-center">Talk About Reel</h1>
       {/* Button to add movie */}
       <div style={{textAlign: "center", margin: "auto"}}>
         <Link to="/add">
-        <button type="button" className="btn btn-primary btn-lg">Add A Movie</button>
+        <button type="button" className="btn btn-primary btn-lg">Add Your Favourite Movie</button>
         </Link>
       </div>
       <br/>
