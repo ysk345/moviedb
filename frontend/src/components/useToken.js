@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export const useToken = () => {
- const token = useState(() => {
+ const [token, setToken] = useState(() => {
    // Get the token from localStorage when the component mounts
    return localStorage.getItem('token');
  });
@@ -11,5 +11,5 @@ export const useToken = () => {
    localStorage.setItem('token', token);
  }, [token]);
 
- return token;
+ return [token, setToken]; // Return token and the setter function
 };

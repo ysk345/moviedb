@@ -10,7 +10,7 @@ const DiscussionBoard = ( ) => {
   const [discussions, setDiscussions] = useState([]);
   const [newDiscussion, setNewDiscussion] = useState("");
   const { isAuthenticated } = useAuth();
-  const { token } = useToken();
+  const [token] = useToken();
   const userId = token ? jwtDecode(token).id : null;
 
  useEffect(() => {
