@@ -10,9 +10,8 @@ const DiscussionBoard = ( ) => {
   const [discussions, setDiscussions] = useState([]);
   const [newDiscussion, setNewDiscussion] = useState("");
   const { isAuthenticated } = useAuth();
-  const [token] = useToken();
-  const decodedToken = jwtDecode(token);
-  const userId = decodedToken.id;
+  const { token } = useToken();
+  const userId = token ? jwtDecode(token).id : null;
 
  useEffect(() => {
    axios
@@ -25,7 +24,8 @@ const DiscussionBoard = ( ) => {
 
  const submitDiscussion = (e) => {
   e.preventDefault();
-  if (!isAuthenticated) {
+  if (!isAuthenticated || userId === null) {
+    alert("You must be logged in to comment.");
     return;
   }
   
