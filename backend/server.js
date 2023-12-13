@@ -1,6 +1,7 @@
 const Genre = require("./model/genre.model");
 const Movie = require("./model/movie.model");
 const Review = require("./model/review.model");
+const Discussion = require('./model/discussion.model');
 const User = require("./model/user.model");
 const config = require("./config.js");
 const express = require("express");
@@ -221,6 +222,32 @@ app.get("/api/genres", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+/* Discussions */
+app.get("/api/discussions/:movieId", (req, res) => {
+  const movieId = req.params.movieId;
+ 
+  Discussion.find({ movieId: movieId })
+    //.populate('userId')
+    .then((discussions) => {
+      if (!discussions) {
+        return res.status(404).json({ error: "No discussions found for this movie" });
+      }
+ 
+      res.json(discussions);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+ });
+
+ app.post('/api/discussions', (req, res) => {
+  const discussion = new Discussion(req.body);
+ 
+  discussion.save()
+    .then(() => res.status(201).json(discussion))
+    .catch((err) => res.status(500).json({ error: err.message }));
+ });
 
 //REVIEWS
 // Create a new review

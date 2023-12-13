@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import DiscussionBoard from "../components/DiscussionBoard";
+import { useAuth } from "../contexts/AuthContext"; // Import the useAuth hook
 
 const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const { isAuthenticated } = useAuth(); // Use the useAuth hook to get the authentication status
 
   useEffect(() => {
     axios
@@ -29,7 +32,8 @@ const MovieDetail = () => {
         className="w-full max-w-md my-4"
       />
       <p>{movie.description}</p>
-      {/* Add more details as needed */}
+      
+      <DiscussionBoard isAuthenticated={isAuthenticated} movieId={id} />
     </div>
   );
 };
