@@ -55,7 +55,8 @@ const DiscussionBoard = ( ) => {
      <h2>Discussion Board</h2>
      {discussions.map((discussion, i) => (
        <div className="discussion" key={i}>
-        <p>{discussion.userId}: {discussion.content}</p>
+        {/* <p>{discussion.userId}: {discussion.content}</p> */}
+        <p>{discussion.userId.username}: {discussion.content}</p>
        </div>
      ))}
      <form onSubmit={submitDiscussion}>
@@ -64,7 +65,8 @@ const DiscussionBoard = ( ) => {
          onChange={(e) => setNewDiscussion(e.target.value)}
          placeholder="Write a new discussion..."
        />
-       <button type="submit">Submit</button>
+       <br/>
+       <button type="submit" className="btn btn-primary my-2">Submit</button>
      </form>     
    </div>
  );

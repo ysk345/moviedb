@@ -228,7 +228,7 @@ app.get("/api/discussions/:movieId", (req, res) => {
   const movieId = req.params.movieId;
  
   Discussion.find({ movieId: movieId })
-    //.populate('userId')
+    .populate('userId', 'username')
     .then((discussions) => {
       if (!discussions) {
         return res.status(404).json({ error: "No discussions found for this movie" });
