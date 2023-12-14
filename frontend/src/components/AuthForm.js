@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const AuthForm = ({ onClose, onRegister, onLogin, errorMessage }) => {
+const AuthForm = ({ onClose, onRegister, onLogin, errorMessage, userData }) => {
+  const [isEditing, setIsEditing] = useState(!userData); //will edit if user is logged in
   const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // NEW LINE
+
+
+  useEffect(() => {
+    if (userData) {
+      setUsername(userData.user.username);
+      setEmail(userData.user.email || '');
+      // Set the initial password based on whether editing or registering
+      setPassword(isEditing ? userData.user.password : '');
+    }
+  }, [userData, isEditing]);
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +67,6 @@ const AuthForm = ({ onClose, onRegister, onLogin, errorMessage }) => {
             />
           </div>
 
-          {/* Email field for registration */}
           {isRegisterMode && (
             <div className="mb-4">
               <label
@@ -81,15 +94,24 @@ const AuthForm = ({ onClose, onRegister, onLogin, errorMessage }) => {
             >
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              placeholder="********"
-              required
-            />
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                placeholder="********"
+                required
+              />
+              <button
+                type="button"
+                className="absolute top-0 right-0 mt-3 mr-3 text-gray-700 hover:text-gray-900"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
 
           <div className="mb-6">
@@ -100,7 +122,7 @@ const AuthForm = ({ onClose, onRegister, onLogin, errorMessage }) => {
               {isRegisterMode ? "Register" : "Login"}
             </button>
           </div>
-          {/* Error message */}
+
           {errorMessage && (
             <div className="mb-4 text-sm text-center text-red-500">
               {errorMessage}
@@ -127,3 +149,4 @@ const AuthForm = ({ onClose, onRegister, onLogin, errorMessage }) => {
 };
 
 export default AuthForm;
+

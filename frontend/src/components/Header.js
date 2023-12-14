@@ -13,6 +13,7 @@ const navigation = [
   //{ name: "Home", href: "/" },
   { name: "Movies", href: "/movielist" },
   { name: "Discussion", href: "/discussion" },
+  { name: 'User Profile', href: '/profile' }, // New User Profile link
   //{ name: "Add", href: "/add" },
 ];
 

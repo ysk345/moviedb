@@ -38,13 +38,11 @@ passport.use(
     }
   })
 );
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-app.use(passport.initialize());
-const params = {
-  secretOrKey: config.jwtSecret,
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-};
+
+
 app.use(
   session({
     secret: "WebKaholics",
@@ -57,6 +55,43 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+
+const params = {
+  secretOrKey: config.jwtSecret,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+};
+
+// **NEW LINE trygin to update user information
+
+app.put("/profile", passport.authenticate("jwt", { session: false }), async (req, res) => {
+  const updatedUserData = req.body;
+  console.log("Updated User Data:", updatedUserData); // Log the updatedUserData
+
+  try {
+    const user = await User.findById(req.user.id); // Assuming the user's id is stored in req.user.id
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Update the user's data
+    user.username = updatedUserData.username || user.username;
+    user.email = updatedUserData.email || user.email;
+
+    // If a new password is provided, hash it before storing it
+    if (updatedUserData.password) {
+      user.password = bcrypt.hashSync(updatedUserData.password, 10);
+    }
+
+    // Save the updated user data
+    const updatedUser = await user.save();
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 // Define routes for movies
 //Endpoint - add movie
@@ -336,13 +371,18 @@ app.delete("/api/reviews/:reviewId", (req, res) => {
 app.get("/", (req, res) => {
   res.send("Introduction JWT Auth");
 });
-app.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  accountController.profile
-);
+
+app.get("/profile", (req, res, next) => {
+  console.log("Middleware - Profile route accessed");
+  passport.authenticate("jwt", { session: false })(req, res, next);
+}, accountController.profile);
+
+
 app.post("/login", accountController.login);
 app.post("/register", accountController.register);
+
+// Move /profile route here
+
 
 module.exports = function () {
   var strategy = new JwtStrategy(params, function (payload, done) {
