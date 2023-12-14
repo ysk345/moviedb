@@ -22,7 +22,7 @@ const Movie = ({ movie, openDeleteModal, isAuthenticated }) => {
     // Grid view
     <div className="border border-secondary border-2 rounded grid-item transition-transform duration-200 cursor-pointer hover:shadow-lg"
           onClick={navigateToMovieDetail}>
-      <div id="movieTitle" className="mb-2">{movie.title}</div>
+      <div class="movieTitle" className="mb-2">{movie.title}</div>
       <div><img
           src={movie.imgURL}
           alt={movie.title}

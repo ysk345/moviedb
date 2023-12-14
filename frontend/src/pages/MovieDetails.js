@@ -1,4 +1,3 @@
-// MovieDetail.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -26,6 +25,9 @@ const MovieDetail = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold">{movie.title}</h1>
+      <p>{movie.year}</p>
+      <p>{movie.director}</p>
+      <p>{movie.genre}</p>
       <img
         src={movie.imgURL}
         alt={movie.title}
@@ -33,6 +35,7 @@ const MovieDetail = () => {
       />
       <p>{movie.description}</p>
       
+
       <DiscussionBoard isAuthenticated={isAuthenticated} movieId={id} />
     </div>
   );

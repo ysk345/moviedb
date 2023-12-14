@@ -67,7 +67,7 @@ export default function Header(props) {
     logout();
   };
   return (
-    <>
+    <div className="header">
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
@@ -88,7 +88,7 @@ export default function Header(props) {
                 <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                   <div className="hidden sm:ml-6 sm:block">                  
                     <div className="flex space-x-4">
-                      <p className="text-white">Talk About Reel</p>
+                      <p className="sitename h4 text-white mt-2">Reel.ly</p>
                       {navigation.map((item) => (
                         <NavLink
                           key={item.name}
@@ -176,6 +176,6 @@ export default function Header(props) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }

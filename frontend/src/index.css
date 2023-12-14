@@ -2,8 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.movielist{
+    font-family: Cabin;
+}
+
+.sitename{
+    font-family: Preahvihear;
+}
+
+#addmovie{
+    font-family: Preahvihear
+}
+
+.header{
+    font-family: Cabin;
+}
+
 body{
-    font-family: Lexend;
+    font-family: Cabin;
 }
 
 footer{
@@ -11,7 +27,7 @@ footer{
 }
 
 #footerText{
-    font-family: Lexend;
+    font-family: Cabin;
     color:aliceblue;
 }
 
@@ -27,7 +43,7 @@ footer{
     text-align: center;
    }
 
-#movieTitle{
-    font-family: Lexend;
+.movieTitle{
+    font-family: Cabin;
     font-size: 20px;
 }
