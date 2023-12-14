@@ -11,11 +11,24 @@
 }
 
 #addmovie{
-    font-family: Preahvihear
+    font-family: Preahvihear;
+    background-color: #1c426f;
+}
+
+.addmoviecontainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+            
+}
+
+.submitbtn{
+    background-color: #4473bd;
 }
 
 .header{
     font-family: Cabin;
+    background-color: #f08c72;    
 }
 
 body{
@@ -23,7 +36,8 @@ body{
 }
 
 footer{
-    background-color: #363e4a;
+    background-color: #182943;
+    
 }
 
 #footerText{

@@ -75,7 +75,7 @@ const DiscussionBoard = () => {
         <textarea
           value={newDiscussion}
           onChange={(e) => setNewDiscussion(e.target.value)}
-          placeholder="Write a new discussion..."
+          placeholder="Leave a comment..."
         />
         <br />
         <button type="submit" className="btn btn-primary my-2">

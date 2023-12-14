@@ -68,7 +68,7 @@ export default function Header(props) {
   };
   return (
     <div className="header">
-      <Disclosure as="nav" className="bg-gray-800">
+      <Disclosure as="nav" className="">
         {({ open }) => (
           <>
             <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -95,10 +95,10 @@ export default function Header(props) {
                           to={item.href}
                           className={({ isActive }) => {
                             return (
-                              "rounded-md px-3 py-2 text-sm font-medium no-underline" +
+                              "text-slate-700 rounded-md px-3 py-2 no-underline" +
                               (isActive
                                 ? "bg-gray-900 text-white no-underline"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white no-underline")
+                                : "text-slate-700 hover:bg-gray-700 hover:text-white no-underline")
                             );
                           }}
                         >
@@ -115,7 +115,7 @@ export default function Header(props) {
                       onClick={() => setIsLoginFormOpen(true)}
                       className="relative p-1 text-gray-200 bg-gray-800 rounded-md hover:text-white focus:outline-none"
                     >
-                      Sign In/Register
+                      Sign In / Register
                     </button>
                   ) : (
                     <button

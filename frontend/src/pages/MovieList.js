@@ -81,7 +81,7 @@ const renderMovieList = () => {
       </div>
       <br/>
 
-      <section>
+      <section className="mb-5">
       {renderMovieList()}
       </section>
       
