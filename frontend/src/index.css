@@ -2,62 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-.movielist{
-    font-family: Cabin;
+.movielist {
+  font-family: Cabin;
 }
 
-.sitename{
-    font-family: Preahvihear;
+.sitename {
+  font-family: Preahvihear;
 }
 
-#addmovie{
-    font-family: Preahvihear;
-    background-color: #1c426f;
+#addmovie {
+  font-family: Preahvihear;
+  background-color: #1c426f;
 }
 
-.addmoviecontainer{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-            
+.addmoviecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.submitbtn{
-    background-color: #4473bd;
+.submitbtn {
+  background-color: #4473bd;
 }
 
-.header{
-    font-family: Cabin;
-    background-color: #f08c72;    
+.header {
+  font-family: Cabin;
+  background-color: #f08c72;
 }
 
-body{
-    font-family: Cabin;
+body {
+  font-family: Cabin;
 }
 
-footer{
-    background-color: #182943;
-    
+footer {
+  background-color: #182943;
 }
 
-#footerText{
-    font-family: Cabin;
-    color:aliceblue;
+#footerText {
+  font-family: Cabin;
+  color: aliceblue;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 1em;
-   }
-   
-.grid-item {
-    border: 1px solid #ccc;
-    padding: 1em;
-    text-align: center;
-   }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1em;
+}
 
-.movieTitle{
-    font-family: Cabin;
-    font-size: 20px;
+.grid-item {
+  border: 1px solid #ccc;
+  padding: 1em;
+  text-align: center;
+}
+
+.movieTitle {
+  font-family: Cabin;
+  font-size: 20px;
+}
+
+/* Styling for the "EDIT" button */
+#editProfileButton {
+  background-color: #3490dc;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem; /* Add margin to the bottom */
+}
+
+#editProfileButton:hover {
+  background-color: #2779bd;
+}
+
+/* Styling for the USER PROFILE */
+
+.fields-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.field {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
