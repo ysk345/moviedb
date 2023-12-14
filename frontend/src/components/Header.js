@@ -68,8 +68,8 @@ export default function Header(props) {
     logout();
   };
   return (
-    <>
-      <Disclosure as="nav" className="bg-gray-800">
+    <div className="header">
+      <Disclosure as="nav" className="">
         {({ open }) => (
           <>
             <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -87,18 +87,19 @@ export default function Header(props) {
                   </Disclosure.Button>
                 </div>
                 <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                  <div className="hidden sm:ml-6 sm:block">
+                  <div className="hidden sm:ml-6 sm:block">                  
                     <div className="flex space-x-4">
+                      <p className="sitename h4 text-white mt-2">Reel.ly</p>
                       {navigation.map((item) => (
                         <NavLink
                           key={item.name}
                           to={item.href}
                           className={({ isActive }) => {
                             return (
-                              "rounded-md px-3 py-2 text-sm font-medium no-underline" +
+                              "text-slate-700 rounded-md px-3 py-2 no-underline" +
                               (isActive
                                 ? "bg-gray-900 text-white no-underline"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white no-underline")
+                                : "text-slate-700 hover:bg-gray-700 hover:text-white no-underline")
                             );
                           }}
                         >
@@ -115,7 +116,7 @@ export default function Header(props) {
                       onClick={() => setIsLoginFormOpen(true)}
                       className="relative p-1 text-gray-200 bg-gray-800 rounded-md hover:text-white focus:outline-none"
                     >
-                      Sign In/Register
+                      Sign In / Register
                     </button>
                   ) : (
                     <button
@@ -176,6 +177,6 @@ export default function Header(props) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }

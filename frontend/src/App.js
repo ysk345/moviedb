@@ -9,6 +9,7 @@ import AddMovie from "./components/AddMovie";
 import EditMovie from "./components/EditMovie";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./contexts/AuthContext";
+import Discussion from "./components/DiscussionBoard";
 
 
 //Frontend Routing
@@ -19,12 +20,14 @@ function App() {
         <Header>
           <Routes>            
             <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/" element={<MovieList />} />
             <Route path="/movielist" element={<MovieList />} />
             <Route path="/discussion" element={<Discussions />} />
             <Route path="/add" element={<AddMovie />} />
             <Route path="/edit/:id" element={<EditMovie />} />
             <Route path="/profile" element={<UserProfile />} />
 
+            <Route path="/movie/:id/discussion" element={<Discussion/>} />
           </Routes>
         </Header>
       </BrowserRouter>

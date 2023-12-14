@@ -97,13 +97,13 @@ export default class AddMovie extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="addmoviecontainer">
         <div className="col-lg-6">
           <form onSubmit={this.onSubmit}>
             <div class="form-group">
-              <label for="exampleInputEmail1">Title:</label>
+              <label for="">Title:</label>
               <input
-                type="text"
+                type="text"                
                 class="form-control col-lg-4"
                 value={this.state.title}
                 onChange={this.onChangeTitle}
@@ -111,7 +111,7 @@ export default class AddMovie extends Component {
             </div>
 
             <div class="form-group">
-              <label for="exampleInputEmail1">Description:</label>
+              <label for="">Description:</label>
               <input
                 type="text"
                 class="form-control col-lg-4"
@@ -121,7 +121,7 @@ export default class AddMovie extends Component {
             </div>
 
             <div class="form-group">
-              <label for="exampleInputEmail1">imgURL:</label>
+              <label for="">imgURL:</label>
               <input
                 type="text"
                 class="form-control col-lg-4"
@@ -131,7 +131,7 @@ export default class AddMovie extends Component {
             </div>
 
             <div class="form-group">
-              <label for="exampleInputEmail1">Year:</label>
+              <label for="">Year:</label>
               <input
                 type="text"
                 class="form-control col-lg-4"
@@ -141,7 +141,7 @@ export default class AddMovie extends Component {
             </div>
 
             <div class="form-group">
-              <label for="exampleInputEmail1">Genre:</label>
+              <label for="">Genre:</label>
               <input
                 type="text"
                 class="form-control col-lg-4"
@@ -151,7 +151,7 @@ export default class AddMovie extends Component {
             </div>
 
             <div class="form-group">
-              <label for="exampleInputEmail1">Director:</label>
+              <label for="">Director:</label>
               <input
                 type="text"
                 class="form-control col-lg-4"
@@ -162,12 +162,12 @@ export default class AddMovie extends Component {
 
             <br />
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-secondary">
               Submit
             </button>
 
             <Link to="/movielist">
-            <button class="btn btn-secondary ms-2">Back</button>
+            <button class="btn ms-2">Back</button>
             </Link>
 
           </form>

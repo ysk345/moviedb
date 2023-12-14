@@ -73,17 +73,15 @@ const renderMovieList = () => {
 };
 
   return (
-    <>
-    <h1 className="text-center">Movie Database</h1>
-      {/* Button to add movie */}
+    <div className="movielist">      
       <div style={{textAlign: "center", margin: "auto"}}>
         <Link to="/add">
-        <button type="button" className="btn btn-primary btn-lg">Add A Movie</button>
+        <button type="button" id="addmovie" className="btn btn-primary btn-lg">Add Your Favourite Movie</button>
         </Link>
       </div>
       <br/>
 
-      <section>
+      <section className="mb-5">
       {renderMovieList()}
       </section>
       
@@ -96,7 +94,7 @@ const renderMovieList = () => {
         />
       )}
 
-    </>
+    </div>
   );
 
 };
