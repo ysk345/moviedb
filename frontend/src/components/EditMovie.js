@@ -15,7 +15,7 @@ const EditMovie = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:8081/api/movies/" + params.id)
+    fetch("https://backend-2zc8.onrender.com/api/movies/" + params.id)
       .then((res) => {
         return res.json();
       })
@@ -41,7 +41,11 @@ const EditMovie = () => {
       },
     };
     axios
-      .put(`http://localhost:8081/api/movies/${params.id}`, formData, config) // Use movieId for the PUT request
+      .put(
+        `https://backend-2zc8.onrender.com/api/movies/${params.id}`,
+        formData,
+        config
+      ) // Use movieId for the PUT request
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 

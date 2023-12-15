@@ -25,7 +25,7 @@ const DiscussionBoard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/discussions/${id}`)
+      .get(`https://backend-2zc8.onrender.com/api/discussions/${id}`)
       .then((res) => {
         setDiscussions(res.data);
       })
@@ -46,11 +46,11 @@ const DiscussionBoard = () => {
     };
 
     axios
-      .post(`http://localhost:8081/api/discussions`, discussionData)
+      .post(`https://backend-2zc8.onrender.com/api/discussions`, discussionData)
       .then((res) => {
         // If the request was successful, refresh the discussions
         axios
-          .get(`http://localhost:8081/api/discussions/${id}`)
+          .get(`https://backend-2zc8.onrender.com/api/discussions/${id}`)
           .then((res) => {
             setDiscussions(res.data);
           })

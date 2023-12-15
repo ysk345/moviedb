@@ -11,7 +11,7 @@ const MovieDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/movies/${id}`)
+      .get(`https://backend-2zc8.onrender.com/api/movies/${id}`)
       .then((res) => {
         setMovie(res.data);
       })
@@ -34,7 +34,6 @@ const MovieDetail = () => {
         className="w-full max-w-md my-4"
       />
       <p>{movie.description}</p>
-      
 
       <DiscussionBoard isAuthenticated={isAuthenticated} movieId={id} />
     </div>

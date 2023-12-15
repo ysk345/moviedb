@@ -49,7 +49,7 @@ const MovieList = () => {
     console.log("Request config:", config);
     // Implement the delete functionality here
     axios
-      .delete(`http://localhost:8081/api/movies/${movieId}`, config)
+      .delete(`https://backend-2zc8.onrender.com/api/movies/${movieId}`, config)
       .then(() => {
         closeDeleteModal();
         fetchData(); // Refresh the list after deletion
