@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 
 const AuthForm = ({ onClose, onRegister, onLogin, errorMessage, userData }) => {
-  const [isEditing, setIsEditing] = useState(!userData); //will edit if user is logged in
+  const [isEditing] = useState(!userData); //will edit if user is logged in
   const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // NEW LINE
 
-
   useEffect(() => {
     if (userData) {
       setUsername(userData.user.username);
-      setEmail(userData.user.email || '');
+      setEmail(userData.user.email || "");
       // Set the initial password based on whether editing or registering
-      setPassword(isEditing ? userData.user.password : '');
+      setPassword(isEditing ? userData.user.password : "");
     }
   }, [userData, isEditing]);
-  
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -149,4 +146,3 @@ const AuthForm = ({ onClose, onRegister, onLogin, errorMessage, userData }) => {
 };
 
 export default AuthForm;
-

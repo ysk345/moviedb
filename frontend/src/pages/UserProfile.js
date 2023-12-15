@@ -1,12 +1,10 @@
 // src/pages/UserProfile.js
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext'; // Import the AuthContext
-import { API_BASE_URL } from '../constants'; // Assuming constant.js is in the same directory
-import AuthForm from '../components/AuthForm'; // Add this line
-import EditProfileForm from '../components/EditProfileForm'; //NEW LINE
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../contexts/AuthContext"; // Import the AuthContext
+import { API_BASE_URL } from "../constants"; // Assuming constant.js is in the same directory
+import EditProfileForm from "../components/EditProfileForm"; //NEW LINE
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -20,33 +18,37 @@ const UserProfile = () => {
   const handleSave = async (updatedUserData) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.put(`${API_BASE_URL}/profile`, updatedUserData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
+      const response = await axios.put(
+        `${API_BASE_URL}/profile`,
+        updatedUserData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
       setUserData(response.data);
     } catch (error) {
-      console.error('Error updating user profile:', error);
+      console.error("Error updating user profile:", error);
     }
-  
+
     setIsEditing(false);
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      const token = localStorage.getItem("token");
-      axios.get(`${API_BASE_URL}/profile`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      axios
+        .get(`${API_BASE_URL}/profile`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
         .then((response) => {
           setUserData(response.data);
         })
         .catch((error) => {
-          console.error('Error fetching user profile:', error);
+          console.error("Error fetching user profile:", error);
         });
     }
   }, [isAuthenticated]);
@@ -54,7 +56,10 @@ const UserProfile = () => {
   return (
     <div>
       <h2>User Profile</h2>
-      <button onClick={handleEditClick} id="editProfileButton">Change Password</button><br></br>
+      <button onClick={handleEditClick} id="editProfileButton">
+        Change Password
+      </button>
+      <br></br>
       {isEditing && (
         <EditProfileForm
           onClose={() => setIsEditing(false)}

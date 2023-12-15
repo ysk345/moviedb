@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 const EditProfileForm = ({ onClose, onSave, userData }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(""); // NEW LINE
   const [showPassword, setShowPassword] = useState(false);
 
-
   useEffect(() => {
     if (userData && userData.user) {
-      setUsername(userData.user.username || '');
-      setEmail(userData.user.email || '');
+      setUsername(userData.user.username || "");
+      setEmail(userData.user.email || "");
       setPassword(""); // You can set an initial value for password if needed
     }
   }, [userData]);
-  
+
   const handleSave = async () => {
     onSave({ username, email, password });
   };
@@ -35,7 +32,6 @@ const EditProfileForm = ({ onClose, onSave, userData }) => {
       console.error(error.message);
     }
   };
-
 
   return (
     <div className="fixed inset-0 z-10 flex items-center justify-center overflow-auto bg-black bg-opacity-50">
@@ -82,7 +78,6 @@ const EditProfileForm = ({ onClose, onSave, userData }) => {
               onClick={handleSave}
               className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               id="editProfileButton" // Assigning the ID here
-
             >
               Save
             </button>
@@ -94,7 +89,3 @@ const EditProfileForm = ({ onClose, onSave, userData }) => {
 };
 
 export default EditProfileForm;
-
-
-
-
