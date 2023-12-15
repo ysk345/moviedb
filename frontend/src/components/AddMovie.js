@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {Link} from 'react-router-dom'; 
+import { Link } from "react-router-dom";
 
 export default class AddMovie extends Component {
   constructor(props) {
@@ -81,7 +81,7 @@ export default class AddMovie extends Component {
 
     //connect frontend to backend
     axios
-      .post("http://localhost:8081/add", newMovie)
+      .post("https://backend-s1zg.onrender.com/add", newMovie)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 
@@ -103,7 +103,7 @@ export default class AddMovie extends Component {
             <div class="form-group">
               <label for="">Title:</label>
               <input
-                type="text"                
+                type="text"
                 class="form-control col-lg-4"
                 value={this.state.title}
                 onChange={this.onChangeTitle}
@@ -167,9 +167,8 @@ export default class AddMovie extends Component {
             </button>
 
             <Link to="/movielist">
-            <button class="btn ms-2">Back</button>
+              <button class="btn ms-2">Back</button>
             </Link>
-
           </form>
         </div>
       </div>
